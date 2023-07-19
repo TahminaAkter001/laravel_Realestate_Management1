@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\SearchServicesController;
+use App\Http\Controllers\MaidProfileController;
+use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,7 @@ use App\Http\Controllers\AgentController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,3 +45,11 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 Route::middleware(['auth', 'role:agent'])->group(function(){
     Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 });//end group agent middleware
+
+Route::get('/service', [SearchServicesController::class, 'service'])->name('service');
+
+Route::get('/maid', [MaidProfileController::class, 'maid'])->name('maid');
+
+Route::get('/tools', [ToolsController::class, 'tools'])->name('tools');
+
+Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
